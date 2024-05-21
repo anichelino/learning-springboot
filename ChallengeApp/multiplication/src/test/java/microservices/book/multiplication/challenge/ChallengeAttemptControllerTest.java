@@ -40,8 +40,8 @@ class ChallengeAttemptControllerTest {
         // given
         User user = new User(1L, "john");
         long attemptId = 5L;
-        ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 70, "john", 3500);
-        ChallengeAttempt expectedResponse = new ChallengeAttempt(attemptId, user, 50, 70, 3500, true);
+        ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 70, "john", ChallengeType.Multiplication,3500);
+        ChallengeAttempt expectedResponse = new ChallengeAttempt(attemptId, user, 50, 70, ChallengeType.Multiplication, 3500,true);
         given(challengeService
                 .verifyAttempt(eq(attemptDTO)))
                 .willReturn(expectedResponse);
@@ -63,7 +63,7 @@ class ChallengeAttemptControllerTest {
     @Test
     void postInvalidResult() throws Exception {
         // given an attempt with invalid input data
-        ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(2000, -70, "john", 1);
+        ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(2000, -70, "john", ChallengeType.Multiplication,1);
 
         // when
         MockHttpServletResponse response = mvc.perform(
