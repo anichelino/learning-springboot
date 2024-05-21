@@ -18,7 +18,8 @@ public class ChallengeController {
     @GetMapping("/random")
     Challenge getRandomChallenge() {
         Challenge challenge = challengeGeneratorService.randomChallenge();
-        log.info("Generating a random challenge: {}", challenge);
+        log.info("Generating a random challenge: {} first commit to github modification", challenge);
+
         return challenge;
     }
 }
