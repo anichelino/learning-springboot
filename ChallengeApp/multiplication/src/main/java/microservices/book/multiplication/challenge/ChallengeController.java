@@ -1,5 +1,6 @@
 package microservices.book.multiplication.challenge;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,24 @@ public class ChallengeController {
     @GetMapping("/random")
     Challenge getRandomChallenge() {
         Challenge challenge = challengeGeneratorService.randomChallenge();
-        log.info("Generating a random challenge: {} first commit to github modification", challenge);
-
+        log.info("Generating a random challenge: {} ", challenge);
         return challenge;
     }
+
+    @GetMapping("/random/operation/{nextElement}")
+    Challenge getRandomChallengeOfGivenOperation(@PathVariable String nextElement) {
+        log.info("operation required: "+nextElement);
+        Challenge challenge = challengeGeneratorService.randomChallengeOfGivenOperation(nextElement);
+        log.info("Generating a random challenge, {}, with the operation of type: {} ", challenge,nextElement);
+        return challenge;
+    }
+
+    @GetMapping("/random/operation")
+    Challenge getRandomChallengeOfGivenOperationRequestParam(@RequestParam(required = true,name = "operation") String operation) {
+        log.info("operation required: "+operation);
+        Challenge challenge = challengeGeneratorService.randomChallengeOfGivenOperation(operation);
+        log.info("Generating a random challenge, {}, with the operation of type: {} ", challenge,operation);
+        return challenge;
+    }
+
 }
