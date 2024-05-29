@@ -41,7 +41,7 @@ class ChallengeAttemptControllerTest {
         User user = new User(1L, "john");
         long attemptId = 5L;
         ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 70, "john", ChallengeType.Multiplication,3500);
-        ChallengeAttempt expectedResponse = new ChallengeAttempt(attemptId, user, 50, 70, ChallengeType.Multiplication, 3500,true);
+        ChallengeAttempt expectedResponse = new ChallengeAttempt(attemptId, user, 50, 70, 3500,ChallengeType.Multiplication,true);
         given(challengeService
                 .verifyAttempt(eq(attemptDTO)))
                 .willReturn(expectedResponse);

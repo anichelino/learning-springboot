@@ -1,5 +1,9 @@
 package microservices.book.multiplication.challenge;
 
+import microservices.book.multiplication.rank.UserRank;
+
+import java.util.List;
+
 public interface ChallengeService {
 
     /**
@@ -9,4 +13,7 @@ public interface ChallengeService {
      */
     ChallengeAttempt verifyAttempt(ChallengeAttemptDTO attemptDTO);
 
+    List<ChallengeAttempt> getStatsForUser(String alias);
+
+    List<UserRank> getAllStats();
 }
